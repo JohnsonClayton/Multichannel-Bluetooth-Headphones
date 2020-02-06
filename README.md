@@ -1,8 +1,6 @@
 # Multichannel-Bluetooth-Headphones
 Server and Arduino code for the Networks course
 
-## Wiring
-
 ## Server
 ### Build
 Execute the commands below or use the `build.sh` file to build the `jar` file.  
@@ -49,6 +47,7 @@ if (play) {
   }
 }
 ```
+### Wiring
 
 ### Resources
 This project is based off of a blog post on [hackster.io](https://www.hackster.io/julianfschroeter/stream-your-audio-on-the-esp32-2e4661#code). Modifications have been made.
