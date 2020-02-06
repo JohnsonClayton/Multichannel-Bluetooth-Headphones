@@ -5,7 +5,7 @@ Server and Arduino code for the Networks course
 ### Build
 ```
 $ javac -d . server/VoiceServer.java server/Helper.java server/ClientHandler.java
-$ jar cvmf MANIFEST.MF server.jar server/voice/server/*
+$ jar cvmf server/MANIFEST.MF server.jar server/voice/server/*
 ```
 ### Run
 ```
