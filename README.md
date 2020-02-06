@@ -2,6 +2,15 @@
 Server and Arduino code for the Networks course
 
 ## Server
+### Build
+```
+$ javac -d . server/*
+$ jar cvmf MANIFEST.MF server.jar server/voice/server/*
+```
+### Run
+```
+$ java -jar server.jar
+```
 
 ## Listener
 
