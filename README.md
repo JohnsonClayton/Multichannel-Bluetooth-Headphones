@@ -1,6 +1,8 @@
 # Multichannel-Bluetooth-Headphones
 Server and Arduino code for the Networks course
 
+## Wiring
+
 ## Server
 ### Build
 Execute the commands below or use the `build.sh` file to build the `jar` file.  
