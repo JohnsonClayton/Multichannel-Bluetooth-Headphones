@@ -3,6 +3,7 @@ Server and Arduino code for the Networks course
 
 ## Server
 ### Build
+Execute the commands below or use the `build.sh` file to build the `jar` file.  
 ```
 $ javac -d . server/VoiceServer.java server/Helper.java server/ClientHandler.java
 $ jar cvmf server/MANIFEST.MF server.jar server/voice/server/*
