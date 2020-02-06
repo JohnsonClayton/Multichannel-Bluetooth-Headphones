@@ -1,0 +1,1 @@
+Main-Class: voice.server.VoiceServer
