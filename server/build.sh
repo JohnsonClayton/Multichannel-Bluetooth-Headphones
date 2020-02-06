@@ -1,8 +1,15 @@
 #!/bin/bash
 
+dir="voice/"
+jar="server.jar"
+
 # Cleans the workspace
-rm -r voice/
-rm server.jar
+if [ -d $dir ] ; then
+  rm -r $dir
+fi
+if [ -f $jar ] ; then
+  rm $jar 
+fi
 
 # Builds the jar file
 javac -d . VoiceServer.java Helper.java ClientHandler.java

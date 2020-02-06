@@ -51,35 +51,18 @@ public class VoiceServer {
         
         ServerSocket listener = new ServerSocket(4444); // Port number goes here, so maybe let's change this on both and see if it still works
 
+        int clientID = 0;
+
         try {
-            Socket socket = listener.accept();
-            ClientHandler ch = new ClientHandler(socket, file, 0);
-            new Thread(ch).start();
+	    while(true) {
+		    Socket socket = listener.accept();
+		    ClientHandler ch = new ClientHandler(socket, file, clientID);
+	            clientID++;
+		    new Thread(ch).start();
             
-            while(true) Thread.sleep(100);
-            // InputStream is = System.in;
-
-            /* boolean exit = false;
-            String input = "";
-            
-            while (!exit) {
-                if (is.available() == 0) {
-                    Thread.sleep(100);
-                } else {
-                    char c = (char) is.read();
-                    if (c == '\n') {
-                        if(input.equals("exit")) {
-                            exit = true;
-                            System.out.println("Server wird beendet...");
-                            ch.stopConnection();
-                        }
-                        input = "";
-                    } else {
-                        input += c;
-                    }
-                }
-            } */
-
+		    //while(true) Thread.sleep(100);
+                    Thread.sleep(1000);
+	    }
         } finally {
             listener.close();
             System.out.println("Server shut down");
