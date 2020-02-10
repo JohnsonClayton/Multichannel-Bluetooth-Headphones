@@ -49,19 +49,25 @@ public class VoiceServer {
         System.out.println("Server started");
         System.out.println("press \"ctrl + c\" to exit \n");
         
-        ServerSocket listener = new ServerSocket(4444); // Port number goes here, so maybe let's change this on both and see if it still works
+        ServerSocket listener = new ServerSocket(4445); // Port number goes here, so maybe let's change this on both and see if it still works
 
         int clientID = 0;
 
+        int currentLocation = 0;
+
+        // Start timer
+        long millis = System.currentTimeMillis();
         try {
 	    while(true) {
 		    Socket socket = listener.accept();
-		    ClientHandler ch = new ClientHandler(socket, file, clientID);
+                    long time_since_start = System.currentTimeMillis() - millis;
+		    ClientHandler ch = new ClientHandler(socket, file, clientID, time_since_start);
 	            clientID++;
 		    new Thread(ch).start();
             
 		    //while(true) Thread.sleep(100);
-                    Thread.sleep(1000);
+                    Thread.sleep(100);
+                    //currentLocation += 800; //Sampling frequency
 	    }
         } finally {
             listener.close();

@@ -22,12 +22,16 @@ public class ClientHandler implements Runnable{
     InputStream is;
     int[] file = null;
     BufferedOutputStream bos;
+    int time_elapsed = 0;
     
     
-    ClientHandler(Socket s, int[] file, int clientId){
+    ClientHandler(Socket s, int[] file, int clientId, long millis_elapsed){
         this.socket = s;
         this.file = file;
         this.clientId = clientId;
+        //this.filePointer = startingPoint;
+        this.time_elapsed = (int)millis_elapsed;
+        this.filePointer = this.time_elapsed * 8; // Sampling rate of 8000 Hz
 
     }
     
@@ -39,7 +43,7 @@ public class ClientHandler implements Runnable{
     public void run() {
         try {
             System.out.println("New Client connected. ");
-            System.out.println("Client IP: " + socket.getInetAddress()) ;
+            System.out.println("Client IP: " + socket.getInetAddress() + " starting at " + this.time_elapsed) ;
             
             is = socket.getInputStream();
             bos = new BufferedOutputStream(socket.getOutputStream());
