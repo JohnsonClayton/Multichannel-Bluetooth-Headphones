@@ -14,6 +14,40 @@ $ java -jar server.jar
 ```
 
 ## Listener
+The headphones are connecting to the audio server through the network. The device I'm using is an ESP32 DevKit. Through the current set up, we have to configure specific data:
+```
+const char* ssid     = "YOUR SSID";
+const char* password = "YOUR PASSWORD";
+const char* host     = "YOUR SERVER IP ADDRESS"; 
+```
+This technique is sub-optimal since we have the network password in **clear text**.  
+The ESP32 is listening with the loop:
+```
+while (client.available() == 0);
+while (client.available() >= 1) {
+  uint8_t value = client.read();
+  dataBuffer[writePointer] = value;
+  writePointer++;
+  if (writePointer == BUFFFERMAX) writePointer = 0;
+}
+```
+and we play to the speaker with the following:
+```
+if (play) {
+  dac_output_voltage(DAC_CHANNEL_1, dataBuffer[readPointer]);
+
+  readPointer++;
+  if (readPointer == BUFFFERMAX) { //BUFFERMAX = 8000
+    readPointer = 0;
+  }
+
+  if ( getAbstand() == 0 ) {
+    Serial.println("Buffer underrun!!!");
+    play = false;
+  }
+}
+```
+### Wiring
 
 ### Resources
 This project is based off of a blog post on [hackster.io](https://www.hackster.io/julianfschroeter/stream-your-audio-on-the-esp32-2e4661#code). Modifications have been made.
