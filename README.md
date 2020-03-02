@@ -13,6 +13,13 @@ $ jar cvmf server/MANIFEST.MF server.jar server/voice/server/*
 $ java -jar server.jar
 ```
 
+### Script
+I've made a script that automatically kicks off each server into its own process. Log files are created for each server and them monitored through the `multitail` program, which you may need to install. When you tell the servers to stop, the PIDs are retrieved from a file and `kill`'ed.  
+Install multitail through `apt install multitail` and run the script:
+```
+$ servers.sh [start|stop]
+```
+
 ## Listener
 The headphones are connecting to the audio server through the network. The device I'm using is an ESP32 DevKit. Through the current set up, we have to configure specific data:
 ```
