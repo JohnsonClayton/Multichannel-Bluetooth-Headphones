@@ -1,2 +1,5 @@
 *.jar
 *.class
+server0_log
+server1_log
+server1_pids
